@@ -1,0 +1,100 @@
+<html>
+<head>
+<title>Tiếq Việt</title>
+<script type="text/javascript" src="jquery-3.2.1.min.js"></script>
+</head>
+<body>
+<textarea cols="100" rows="20" id="orginal_text"></textarea>
+<br>
+<button id="convert">Chuyển Đổi</button>
+<br>
+<textarea cols="100" rows="20" id="convert_text"></textarea>
+</body>
+<script type="text/javascript">
+	$(document).ready(function () {
+		$("#convert").click(function () {
+			var orginal_text = $("#orginal_text").val();
+			var words = orginal_text.split(' ');
+			for(var i = 0; i < words.length; i++) {
+				words[i] = convert_to_Tieq_Viet(words[i]);
+			}
+			$("#convert_text").text(words.join(" "));
+		});
+	});
+
+	function convert_to_Tieq_Viet(word) {
+		word = word.replace("nh", "n'");
+		word = word.replace("Nh", "N'");
+
+		word = word.replace("th", "w");
+		word = word.replace("Th", "W");
+
+		word = word.replace("q", "k");
+		word = word.replace("Q", "K");
+
+		word = convert_ch_c_k(word);
+
+		word = word.replace("tr", "c");
+		word = word.replace("Tr", "C");
+
+		word = word.replace("ng", "q");
+		word = word.replace("Ng", "Q");
+
+		word = word.replace("ngh", "q");
+		word = word.replace("Ngh", "Q");
+
+		word = word.replace("d", "z");
+		word = word.replace("D", "Z");
+		word = word.replace("gi", "z");
+		word = word.replace("gI", "z");
+		word = word.replace("Gi", "Z");
+		word = word.replace("GI", "Z");
+		word = word.replace("r", "z");
+		word = word.replace("R", "Z");
+
+		word = word.replace("gh", "g");
+		word = word.replace("Gh", "G");
+
+		word = word.replace("ph", "f");
+		word = word.replace("Ph", "F");
+
+		word = word.replace("x", "s");
+		word = word.replace("X", "S");
+
+		word = word.replace("kh", "x");
+		word = word.replace("Kh", "X");
+
+		word = word.replace("đ", "d");
+		word = word.replace("Đ", "D");
+
+		return word;
+	}
+
+	function convert_ch_c_k(word) {
+		var n = word.length;
+		for(var i=0; i<n; i++){
+			if(word[i] == 'c' || word[i] == 'C'){
+				if(i + 1 < n && word[i + 1] == 'h'){
+					var newword = word.substr(0, i + 1);
+					if(i + 1 < n){
+						newword = newword + word.substr(i + 2)
+					}
+					word = newword;
+					n--;
+				} else {
+					var newword = word.substr(0, i);
+					if(word[i] == 'c')
+						newword = newword + 'k';
+					else
+						newword = newword + 'K'; 
+					if(i + 1 < n){
+						newword = newword + word.substr(i + 1)
+					}
+					word = newword;
+				}
+			}
+		}
+		return word;
+	}
+</script>
+</html>
