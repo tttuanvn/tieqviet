@@ -6,7 +6,8 @@
 <body>
 <textarea cols="100" rows="20" id="orginal_text"></textarea>
 <br>
-<button id="convert">Chuyển Đổi</button>
+<button id="convert">Chuyển Sang Tiếq Việt</button>
+<button id="convert2">Chuyển Sang Tiếng Việt</button>
 <br>
 <textarea cols="100" rows="20" id="convert_text"></textarea>
 </body>
@@ -20,17 +21,93 @@
 			}
 			$("#convert_text").text(words.join(" "));
 		});
+
+		$("#convert").click(function () {
+			var orginal_text = $("#orginal_text").val();
+			var words = orginal_text.split(' ');
+			for(var i = 0; i < words.length; i++) {
+				words[i] = convert_to_Tieng_Viet(words[i]);
+			}
+			$("#convert_text").text(words.join(" "));
+		});
 	});
 
 	function convert_to_Tieq_Viet(word) {
 		word = word.replace("nh", "n'");
+		word = word.replace("nH", "n'");
 		word = word.replace("Nh", "N'");
+		word = word.replace("NH", "N'");
 
 		word = word.replace("th", "w");
+		word = word.replace("tH", "w");
 		word = word.replace("Th", "W");
+		word = word.replace("TH", "W");
 
 		word = word.replace("q", "k");
 		word = word.replace("Q", "K");
+
+		word = convert_ch_c_k(word);
+
+		word = word.replace("tr", "c");
+		word = word.replace("tR", "c");
+		word = word.replace("Tr", "C");
+		word = word.replace("TR", "C");
+
+		word = word.replace("ng", "q");
+		word = word.replace("nG", "q");
+		word = word.replace("Ng", "Q");
+		word = word.replace("NG", "Q");
+
+		word = word.replace("ngh", "q");
+		word = word.replace("nGh", "q");
+		word = word.replace("nGH", "q");
+		word = word.replace("ngH", "q");
+		word = word.replace("Ngh", "Q");
+		word = word.replace("NGh", "Q");
+		word = word.replace("NGH", "Q");
+
+		word = word.replace("d", "z");
+		word = word.replace("D", "Z");
+		word = word.replace("gi", "z");
+		word = word.replace("gI", "z");
+		word = word.replace("Gi", "Z");
+		word = word.replace("GI", "Z");
+		word = word.replace("r", "z");
+		word = word.replace("R", "Z");
+
+		word = word.replace("gh", "g");
+		word = word.replace("gH", "g");
+		word = word.replace("Gh", "G");
+		word = word.replace("GH", "G");
+
+		word = word.replace("ph", "f");
+		word = word.replace("pH", "f");
+		word = word.replace("Ph", "F");
+		word = word.replace("PH", "F");
+
+		word = word.replace("x", "s");
+		word = word.replace("X", "S");
+
+		word = word.replace("kh", "x");
+		word = word.replace("kH", "x");
+		word = word.replace("Kh", "X");
+		word = word.replace("KH", "X");
+
+		word = word.replace("đ", "d");
+		word = word.replace("Đ", "D");
+
+		return word;
+	}
+
+	function convert_to_Tieq_Viet(word) {
+		word = word.replace("n'", "nh");
+		word = word.replace("N'", "Nh");
+
+		word = word.replace("w", "th");
+		word = word.replace("W", "Th");
+
+		word = word.replace("k", "q");
+		word = word.replace("K", "Q");
 
 		word = convert_ch_c_k(word);
 
