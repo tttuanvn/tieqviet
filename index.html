@@ -100,49 +100,38 @@
 	}
 
 	function convert_to_Tieng_Viet(word) {
+		word = word.replace("d", "đ");
+		word = word.replace("D", "Đ");
+
 		word = word.replace("n'", "nh");
 		word = word.replace("N'", "Nh");
 
 		word = word.replace("w", "th");
 		word = word.replace("W", "Th");
 
-		word = word.replace("k", "q");
-		word = word.replace("K", "Q");
+		word = word.replace("q", "[ng/ngh]");
+		word = word.replace("Q", "[Ng/Ngh]");
 
-		word = convert_ch_c_k(word);
+		word = word.replace("k", "[k/q/c]");
+		word = word.replace("K", "[K/Q/C]");
 
-		word = word.replace("tr", "c");
-		word = word.replace("Tr", "C");
+		word = word.replace("c", "[tr/ch]");
+		word = word.replace("C", "[Tr/Ch]");
 
-		word = word.replace("ng", "q");
-		word = word.replace("Ng", "Q");
+		word = word.replace("g", "[g/gh]");
+		word = word.replace("G", "[G/Gh]");
 
-		word = word.replace("ngh", "q");
-		word = word.replace("Ngh", "Q");
+		word = word.replace("z", "[d/r/gi]");
+		word = word.replace("Z", "[D/R/Gi]");
 
-		word = word.replace("d", "z");
-		word = word.replace("D", "Z");
-		word = word.replace("gi", "z");
-		word = word.replace("gI", "z");
-		word = word.replace("Gi", "Z");
-		word = word.replace("GI", "Z");
-		word = word.replace("r", "z");
-		word = word.replace("R", "Z");
+		word = word.replace("f", "ph");
+		word = word.replace("F", "Ph");
 
-		word = word.replace("gh", "g");
-		word = word.replace("Gh", "G");
+		word = word.replace("x", "Kh");
+		word = word.replace("X", "Kh");
 
-		word = word.replace("ph", "f");
-		word = word.replace("Ph", "F");
-
-		word = word.replace("x", "s");
-		word = word.replace("X", "S");
-
-		word = word.replace("kh", "x");
-		word = word.replace("Kh", "X");
-
-		word = word.replace("đ", "d");
-		word = word.replace("Đ", "D");
+		word = word.replace("s", "[s/x]");
+		word = word.replace("S", "[S/X]");
 
 		return word;
 	}
